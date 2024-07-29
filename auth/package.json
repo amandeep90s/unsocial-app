@@ -49,16 +49,16 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "src/**/*.ts": [
       "npm run prettier:fix",
       "npm run lint"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "jest": {
     "testEnvironment": "node",
