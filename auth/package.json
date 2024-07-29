@@ -47,8 +47,8 @@
   },
   "lint-staged": {
     "src/**/*.ts": [
-      "eslint .", 
-      "prettier --write .", 
+      "npm run prettier:fix", 
+      "npm run lint", 
       "git add"
     ]
   },
