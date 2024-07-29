@@ -5,11 +5,13 @@
   "main": "index.ts",
   "scripts": {
     "lint": "eslint src",
+    "lint:staged": "lint-staged",
     "prettier:check": "prettier --check ./src/**/*.ts",
     "prettier:fix": "prettier --write ./src/**/*.ts",
     "start:dev": "nodemon src/index.ts",
     "start": "echo starting prod server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "Amandeep Singh",
@@ -47,8 +49,8 @@
   },
   "lint-staged": {
     "src/**/*.ts": [
-      "npm run prettier:fix", 
-      "npm run lint", 
+      "npm run prettier:fix",
+      "npm run lint",
       "git add"
     ]
   },
