@@ -11,7 +11,7 @@
     "prettier:fix": "prettier --write ./src/**/*.ts",
     "start:dev": "nodemon src/index.ts",
     "start": "echo starting prod server",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --detectOpenHandles",
     "prepare": "husky"
   },
   "keywords": [],
@@ -30,6 +30,7 @@
   "devDependencies": {
     "@types/dotenv-safe": "^8.1.6",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
     "@types/node": "^22.0.0",
     "@types/nodemailer": "^6.4.15",
     "@types/supertest": "^6.0.2",
@@ -58,5 +59,9 @@
       "npm run prettier:fix",
       "npm run lint"
     ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "preset": "ts-jest"
   }
 }

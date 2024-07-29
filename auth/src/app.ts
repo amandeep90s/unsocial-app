@@ -3,7 +3,7 @@ import express from 'express';
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('Hello from auth service');
+  res.status(200).send('Hello from auth service');
 });
 
 export default app;

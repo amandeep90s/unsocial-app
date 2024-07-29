@@ -1,3 +1,6 @@
 import request from 'supertest';
+import app from '../app';
 
-// Rest of the code...
+it('should return 200', async () => {
+  await request(app).get('/').expect(200);
+});
