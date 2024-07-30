@@ -5,7 +5,7 @@
   "scripts": {
     "prettier:fix": "cd auth && npm run prettier:fix",
     "lint:fix": "cd auth && npm run lint:fix",
-    "test:auth": "cd auth && npm run test",
+    "test:auth": "cd auth && npm test",
     "prepare": "husky"
   },
   "keywords": [],
