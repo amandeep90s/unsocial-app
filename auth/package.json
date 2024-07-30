@@ -4,8 +4,8 @@
   "description": "Authentication microservice for our social media app.",
   "main": "index.ts",
   "scripts": {
-    "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "lint-staged": "lint-staged",
     "prettier:check": "prettier --check ./src/**/*.ts",
     "prettier:fix": "prettier --write ./src/**/*.ts",
