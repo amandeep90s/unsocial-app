@@ -4,7 +4,7 @@ module.exports = {
   plugins: ['import', 'prettier', '@typescript-eslint'],
   parserOptions: { project: './tsconfig.json', tsconfigRootDir: __dirname },
   rules: {
-    quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
+    quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
   },
   settings: {
     react: {
