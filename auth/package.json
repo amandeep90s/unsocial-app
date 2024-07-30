@@ -11,7 +11,7 @@
     "prettier:fix": "prettier --write ./src/**/*.ts",
     "start:dev": "nodemon src/index.ts",
     "start": "echo starting prod server",
-    "test": "jest --detectOpenHandles",
+    "test": "jest --watchAll --no-cache --detectOpenHandles",
     "prepare": "husky"
   },
   "keywords": [],

@@ -1,9 +1,10 @@
 import express from 'express';
+import { signUpRouter } from './routes';
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.status(200).send('Hello from auth service');
-});
+app.use(express.json());
+
+app.use(signUpRouter);
 
 export default app;
