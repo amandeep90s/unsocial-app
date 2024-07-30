@@ -11,7 +11,7 @@
     "prettier:fix": "prettier --write ./src/**/*.ts",
     "start:dev": "nodemon src/index.ts",
     "start": "echo starting prod server",
-    "test": "jest --detectOpenHandles",
+    "test": "jest",
     "test:watch": "jest --watchAll --no-cache --detectOpenHandles",
     "prepare": "husky"
   },
@@ -54,11 +54,23 @@
     "src/**/*.ts": [
       "npm run prettier:fix",
       "npm run lint",
-      "npm run test"
+      "npm run test -- --passWithNoTests"
     ]
   },
   "jest": {
     "testEnvironment": "node",
-    "preset": "ts-jest"
+    "preset": "ts-jest",
+    "testMatch": [
+      "**/*.test.ts"
+    ],
+    "collectCoverage": false,
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/index.ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }

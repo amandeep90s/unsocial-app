@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "lint-staged": "lint-staged",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier:fix": "cd auth && npm run prettier:fix",
+    "lint:fix": "cd auth && npm run lint:fix",
+    "test:auth": "cd auth && npm run test",
     "prepare": "husky"
   },
   "keywords": [],
@@ -17,9 +18,10 @@
   },
   "lint-staged": {
     "auth/src/**/*.ts": [
-      "cd auth && npm run prettier:fix",
-      "cd auth && npm run lint:fix",
-      "cd auth && npm run test"
+      "npm run prettier:fix",
+      "npm run lint:fix",
+      "npm run test:auth",
+      "git add"
     ]
   }
 }
