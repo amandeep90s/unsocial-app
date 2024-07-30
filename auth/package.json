@@ -11,7 +11,8 @@
     "prettier:fix": "prettier --write ./src/**/*.ts",
     "start:dev": "nodemon src/index.ts",
     "start": "echo starting prod server",
-    "test": "jest --watchAll --no-cache --detectOpenHandles",
+    "test": "jest --detectOpenHandles",
+    "test:watch": "jest --watchAll --no-cache --detectOpenHandles",
     "prepare": "husky"
   },
   "keywords": [],
@@ -52,7 +53,9 @@
   "lint-staged": {
     "src/**/*.ts": [
       "npm run prettier:fix",
-      "npm run lint"
+      "npm run lint",
+      "npm run test",
+      "git add"
     ]
   },
   "jest": {
