@@ -12,7 +12,7 @@
     "start:dev": "nodemon src/index.ts",
     "start": "echo starting prod server",
     "test": "jest --watchAll --no-cache --detectOpenHandles",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "keywords": [],
   "author": "Amandeep Singh",
@@ -39,7 +39,6 @@
     "eslint": "^8.57.0",
     "eslint-config-airbnb-typescript-prettier": "^5.0.0",
     "eslint-plugin-import": "^2.29.1",
-    "husky": "^9.1.4",
     "jest": "^29.7.0",
     "lint-staged": "^15.2.7",
     "nodemon": "^3.1.4",
@@ -54,11 +53,6 @@
       "npm run prettier:fix",
       "npm run lint"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "jest": {
     "testEnvironment": "node",
