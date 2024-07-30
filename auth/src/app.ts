@@ -1,7 +1,5 @@
 import express from 'express';
-import routes from './routes';
-
-const { signUpRouter } = routes;
+import { signUpRouter } from './routes';
 
 const app = express();
 

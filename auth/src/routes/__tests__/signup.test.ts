@@ -1,9 +1,31 @@
 import request from 'supertest';
 import app from '../../app';
+import { SIGNUP_ROUTE } from '../signup';
 
-// it('should return 405 for non-posts requests to the signup route', () => {
-//   //
-// });
+/**
+ * Available methods for the signup route:
+ *  - POST
+ */
+describe('test signup route method availability', () => {
+	let email = '';
+	let password = '';
+
+	beforeAll(() => {
+		email = 'test@example.com';
+		password = 'ValidPassword123';
+	});
+
+	it('should return 405 for non-posts requests', async () => {
+		await request(app).get(SIGNUP_ROUTE).expect(405);
+		await request(app).put(SIGNUP_ROUTE).expect(405);
+		await request(app).patch(SIGNUP_ROUTE).expect(405);
+		await request(app).delete(SIGNUP_ROUTE).expect(405);
+	});
+
+	it('should return 200 for post requests', async () => {
+		await request(app).post(SIGNUP_ROUTE).send({ email, password }).expect(200);
+	});
+});
 
 /**
  * Valid email conditions:
@@ -17,21 +39,15 @@ describe('test validity of email input', () => {
 	});
 
 	it('should return 422 if the email is not provided', async () => {
-		await request(app).post('/api/auth/signup').send({ password }).expect(422);
+		await request(app).post(SIGNUP_ROUTE).send({ password }).expect(422);
 	});
 
 	it('should return 422 if the email is not valid', async () => {
-		await request(app)
-			.post('/api/auth/signup')
-			.send({ email: 'invalidEmail', password })
-			.expect(422);
+		await request(app).post(SIGNUP_ROUTE).send({ email: 'invalidEmail', password }).expect(422);
 	});
 
 	it('should return 200 if email is valid', async () => {
-		await request(app)
-			.post('/api/auth/signup')
-			.send({ email: 'test@example.com', password })
-			.expect(200);
+		await request(app).post(SIGNUP_ROUTE).send({ email: 'test@example.com', password }).expect(200);
 	});
 });
 
@@ -51,12 +67,12 @@ describe('test validity of password input', () => {
 	});
 
 	it('should return 422 if the password is not provided', async () => {
-		await request(app).post('/api/auth/signup').send({ email }).expect(422);
+		await request(app).post(SIGNUP_ROUTE).send({ email }).expect(422);
 	});
 
 	it('should return 422 if the password contains less than 8 characters', async () => {
 		await request(app)
-			.post('/api/auth/signup')
+			.post(SIGNUP_ROUTE)
 			.send({
 				email,
 				password: 'Valid12Valid12Valid12Valid12Valid12Valid12',
@@ -65,25 +81,22 @@ describe('test validity of password input', () => {
 	});
 
 	it('should return 422 if the password contains more than 32 characters', async () => {
-		await request(app).post('/api/auth/signup').send({ email, password: 'Valid12' }).expect(422);
+		await request(app).post(SIGNUP_ROUTE).send({ email, password: 'Valid12' }).expect(422);
 	});
 
 	it('should return 422 if the password does not contain one lower-case letter', async () => {
-		await request(app).post('/api/auth/signup').send({ email, password: 'VALID123' }).expect(422);
+		await request(app).post(SIGNUP_ROUTE).send({ email, password: 'VALID123' }).expect(422);
 	});
 
 	it('should return 422 if the password does not contain one upper-case letter', async () => {
-		await request(app).post('/api/auth/signup').send({ email, password: 'valid123' }).expect(422);
+		await request(app).post(SIGNUP_ROUTE).send({ email, password: 'valid123' }).expect(422);
 	});
 
 	it('should return 422 if the password does not contain one digit', async () => {
-		await request(app).post('/api/auth/signup').send({ email, password: 'ValidPass' }).expect(422);
+		await request(app).post(SIGNUP_ROUTE).send({ email, password: 'ValidPass' }).expect(422);
 	});
 
 	it('should return 200 if the password is valid', async () => {
-		await request(app)
-			.post('/api/auth/signup')
-			.send({ email, password: 'ValidPass1234' })
-			.expect(200);
+		await request(app).post(SIGNUP_ROUTE).send({ email, password: 'ValidPass1234' }).expect(200);
 	});
 });

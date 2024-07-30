@@ -6,14 +6,12 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint-staged": "lint-staged",
     "prettier:check": "prettier --check ./src/**/*.ts",
     "prettier:fix": "prettier --write ./src/**/*.ts",
     "start:dev": "nodemon src/index.ts",
     "start": "echo starting prod server",
     "test": "jest",
-    "test:watch": "jest --watchAll --no-cache --detectOpenHandles",
-    "prepare": "husky"
+    "test:watch": "jest --watchAll --no-cache --detectOpenHandles"
   },
   "keywords": [],
   "author": "Amandeep Singh",
@@ -40,22 +38,13 @@
     "eslint": "^8.57.0",
     "eslint-config-airbnb-typescript-prettier": "^5.0.0",
     "eslint-plugin-import": "^2.29.1",
-    "husky": "^9.1.4",
     "jest": "^29.7.0",
-    "lint-staged": "^15.2.7",
     "nodemon": "^3.1.4",
     "prettier": "^2.8.8",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
-  },
-  "lint-staged": {
-    "src/**/*.ts": [
-      "npm run prettier:fix",
-      "npm run lint",
-      "npm run test -- --passWithNoTests"
-    ]
   },
   "jest": {
     "testEnvironment": "node",
