@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
+import { User } from '../models';
 
 export const SIGNUP_ROUTE = '/api/auth/signup';
 
@@ -27,16 +28,21 @@ signUpRouter.post(
 			.withMessage('Password must contain at least one digit'),
 		body('password').escape(),
 	],
-	(req: Request, res: Response) => {
+	async (req: Request, res: Response) => {
 		const errors = validationResult(req);
-		if (
-			!errors.isEmpty() ||
-			/.+@[A-Z]/g.test(req.body.email) ||
-			/[<>'"/]/g.test(req.body.password)
-		) {
+		const { email, password } = req.body;
+
+		if (!errors.isEmpty() || /.+@[A-Z]/g.test(email) || /[<>'"/]/g.test(password)) {
 			return res.status(422).send({});
 		}
-		res.send({ email: req.body.email });
+
+		const existingUser = await User.findOne({ email });
+		if (existingUser) {
+			return res.status(422).send({});
+		}
+
+		const newUser = await User.create({ email, password });
+		res.status(201).send(newUser);
 	},
 );
 
