@@ -6,6 +6,8 @@ module.exports = {
 	rules: {
 		quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'import/prefer-default-export': 'off',
+		'consistent-return': 'off',
+		'no-console': 'off',
 	},
 	settings: {
 		react: {

@@ -95,3 +95,14 @@ describe('test sanitization of password input', () => {
 			.expect(200);
 	});
 });
+
+describe('tests saving the signed-up user to the database', () => {
+	const userInfo = { email: 'test@example.com', password: 'ValidaPass123' };
+
+	it('should saves the user successfully as long as the information is valid', async () => {
+		const response = await request(app).post(SIGNUP_ROUTE).send(userInfo).expect(200);
+		expect(response.body.email).toEqual(userInfo.email);
+	});
+
+	// it('should not allow saving a user with a duplicate email', () => {});
+});

@@ -29,8 +29,12 @@ signUpRouter.post(
 	],
 	(req: Request, res: Response) => {
 		const errors = validationResult(req);
-		if (!errors.isEmpty()) {
-			res.status(422).send({});
+		if (
+			!errors.isEmpty() ||
+			/.+@[A-Z]/g.test(req.body.email) ||
+			/[<>'"/]/g.test(req.body.password)
+		) {
+			return res.status(422).send({});
 		}
 		res.send({ email: req.body.email });
 	},
