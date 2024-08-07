@@ -33,7 +33,7 @@ signUpRouter.post(
 		const { email, password } = req.body;
 
 		if (!errors.isEmpty() || /.+@[A-Z]/g.test(email) || /[<>'"/]/g.test(password)) {
-			return res.status(422).send({});
+			throw new Error('');
 		}
 
 		try {
