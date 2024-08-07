@@ -5,7 +5,7 @@
   "scripts": {
     "prettier:fix": "cd auth && npm run prettier:fix",
     "lint:fix": "cd auth && npm run lint:fix",
-    "test:auth": "cd auth && npm test",
+    "test": "cd auth && npm run test",
     "prepare": "husky"
   },
   "keywords": [],
@@ -20,7 +20,7 @@
     "auth/src/**/*.ts": [
       "npm run prettier:fix",
       "npm run lint:fix",
-      "npm run test:auth"
+      "npm run test"
     ]
   }
 }

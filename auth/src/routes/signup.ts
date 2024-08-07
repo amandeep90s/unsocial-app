@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import { User } from '../models';
+import { InvalidInput } from '../errors/input-validation';
 
 export const SIGNUP_ROUTE = '/api/auth/signup';
 
@@ -33,7 +34,7 @@ signUpRouter.post(
 		const { email, password } = req.body;
 
 		if (!errors.isEmpty() || /.+@[A-Z]/g.test(email) || /[<>'"/]/g.test(password)) {
-			throw new Error('');
+			throw new InvalidInput();
 		}
 
 		try {
