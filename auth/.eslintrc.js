@@ -8,7 +8,7 @@ module.exports = {
 		'import/prefer-default-export': 'off',
 		'consistent-return': 'off',
 		'no-console': 'off',
-		'@typescript-eslint/no-unused-vars': 'warn'
+		'@typescript-eslint/no-unused-vars': 'off'
 	},
 	settings: {
 		react: {
