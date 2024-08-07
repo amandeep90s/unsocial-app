@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import { User } from '../models';
-import { InvalidInput } from '../errors/input-validation';
+import { InvalidInput } from '../errors';
 
 export const SIGNUP_ROUTE = '/api/auth/signup';
 
