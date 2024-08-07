@@ -19,6 +19,16 @@ const userSchema = new mongoose.Schema({
 	},
 });
 
+// Pre-save hook to check if the email already exists
+userSchema.pre('save', async function preSaveFunction(this: UserDocument, next) {
+	const existingUser = await mongoose.models.User.findOne({ email: this.email });
+	if (existingUser) {
+		const error = new Error('Email is already in use');
+		return next(error);
+	}
+	next();
+});
+
 const User = mongoose.model<UserDocument, UserModel>('User', userSchema);
 
 export default User;

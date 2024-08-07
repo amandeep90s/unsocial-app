@@ -36,13 +36,12 @@ signUpRouter.post(
 			return res.status(422).send({});
 		}
 
-		const existingUser = await User.findOne({ email });
-		if (existingUser) {
-			return res.status(422).send({});
+		try {
+			const newUser = await User.create({ email, password });
+			res.status(201).send(newUser);
+		} catch (e) {
+			res.sendStatus(422);
 		}
-
-		const newUser = await User.create({ email, password });
-		res.status(201).send(newUser);
 	},
 );
 
