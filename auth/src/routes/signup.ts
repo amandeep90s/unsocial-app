@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import { User } from '../models';
-import { InvalidInput } from '../errors';
+import { DuplicatedEmail, InvalidInput } from '../errors';
 
 export const SIGNUP_ROUTE = '/api/auth/signup';
 
@@ -30,18 +30,38 @@ signUpRouter.post(
 		body('password').escape(),
 	],
 	async (req: Request, res: Response) => {
-		const errors = validationResult(req);
+		const errors = validationResult(req).array();
 		const { email, password } = req.body;
 
-		if (!errors.isEmpty() || /.+@[A-Z]/g.test(email) || /[<>'"/]/g.test(password)) {
-			throw new InvalidInput();
+		if (/.+@[A-Z]/g.test(email)) {
+			errors.push({
+				location: 'body',
+				value: req.body.email,
+				type: 'field',
+				path: 'email',
+				msg: 'Email is not normalized',
+			});
+		}
+
+		if (/[<>'"/]/g.test(password)) {
+			errors.push({
+				location: 'body',
+				value: req.body.password,
+				type: 'field',
+				path: 'password',
+				msg: 'Password contains invalid characters',
+			});
+		}
+
+		if (errors.length > 0) {
+			throw new InvalidInput(errors);
 		}
 
 		try {
 			const newUser = await User.create({ email, password });
 			res.status(201).send(newUser);
 		} catch (e) {
-			res.sendStatus(422);
+			throw new DuplicatedEmail();
 		}
 	},
 );

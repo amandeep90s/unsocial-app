@@ -13,6 +13,6 @@ it('should not save a new user if the email is already in use', async () => {
 	} catch (e) {
 		err = e as Error;
 		expect(err).toBeDefined();
-		expect(err.message).toEqual('Email is already in use');
+		expect(err.message).toEqual('The email is already in use');
 	}
 });

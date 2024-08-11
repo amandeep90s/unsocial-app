@@ -9,7 +9,7 @@ class InvalidInput extends BaseCustomError {
 
 	protected statusCode = 422;
 
-	private defaultErrorMessage = 'The input provided is invalid';
+	protected defaultErrorMessage = 'The input provided is invalid';
 
 	constructor(errors?: InvalidInputConstructorErrorParams) {
 		super('The input provided is invalid');

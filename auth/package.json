@@ -57,7 +57,8 @@
 			"**/*.test.ts"
 		],
 		"testPathIgnorePatterns": [
-			"/node_modules/", "/dist/"
+			"/node_modules/",
+			"/dist/"
 		],
 		"collectCoverage": true,
 		"coverageDirectory": "coverage",
