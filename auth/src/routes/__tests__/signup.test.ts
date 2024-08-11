@@ -111,6 +111,7 @@ describe('tests saving the signed-up user to the database', () => {
 
 	it('should not allow saving a user with a duplicate email', async () => {
 		await request(app).post(SIGNUP_ROUTE).send(validUserInfo).expect(201);
-		await request(app).post(SIGNUP_ROUTE).send(validUserInfo).expect(422);
+		const response = await request(app).post(SIGNUP_ROUTE).send(validUserInfo).expect(422);
+		expect(response.body.errors[0].message).toBe('The email is already in use');
 	});
 });

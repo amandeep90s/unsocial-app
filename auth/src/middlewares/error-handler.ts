@@ -3,7 +3,7 @@ import { BaseCustomError } from '../errors';
 
 const errorHandler = (error: Error, req: Request, res: Response, next: NextFunction) => {
 	if (error instanceof BaseCustomError) {
-		return res.sendStatus(error.getStatusCode());
+		return res.status(error.getStatusCode()).send(error.serializeErrorOutput());
 	}
 
 	res.sendStatus(500);

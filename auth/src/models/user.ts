@@ -25,7 +25,6 @@ userSchema.pre('save', async function preSaveFunction(this: UserDocument, next) 
 	const existingUser = await mongoose.models.User.findOne({ email: this.email });
 	if (existingUser) {
 		throw new DuplicatedEmail();
-		// return next(error);
 	}
 	next();
 });
